@@ -6,12 +6,12 @@ measure-velocity() {
 
   for (( i=1; i<11; i++ )); do 
     export size=$(( chunk * i ))
-    export compressed_size=$( dd if=$1 bs=10 count=$i 2>/dev/null | gzip | wc -c )
+    export compressed_size=$( dd if=$1 bs=$size count=1 2>/dev/null | gzip | wc -c )
     printf "size=%d, compression=%s\n" $size "$( perl -e 'print $ENV{compressed_size}/$ENV{size}' )"
   done
 }
 
 for file in "$@"; do
   printf "$file: "
-  measure-velocity $file | tail -1
+  measure-velocity $file
 done
