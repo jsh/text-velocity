@@ -1,0 +1,10 @@
+#!/bin/bash -eu
+
+die() { echo "$@"; exit 10; }
+usage="usage: $0 <count> <byte>"
+[ $# -eq 2 ] || die $usage
+
+i=0
+for (( i=0; i < $1; i++ )); do
+  printf $2
+done
