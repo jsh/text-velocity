@@ -1,0 +1,10 @@
+#!/bin/bash -eu
+
+file_size=$(cat $1 | wc -c)
+chunk=$(( file_size / 10 ))
+
+for (( i=1; i<11; i++ )); do 
+  export size=$(( chunk * i ))
+  export compressed_size=$( dd if=$1 bs=$size count=1 2>/dev/null | gzip | wc -c )
+  echo $size $compressed_size
+done
