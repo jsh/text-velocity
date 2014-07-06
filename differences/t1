@@ -1,0 +1,10 @@
+#!/bin/bash -eu
+
+source test_setup
+
+cat sums-of-two |
+  fd |
+  fd |
+  while read x y; do
+    [[ $y == 0 ]]
+  done

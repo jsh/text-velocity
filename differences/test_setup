@@ -1,0 +1,15 @@
+# functions for test
+
+set -o pipefail
+
+status() {
+  _status=$?
+  if [[ $_status == 0 ]]; then
+    echo $0: SUCCESS
+  else
+    echo $0: FAIL
+  fi
+  exit $_status
+}
+
+trap 'status' EXIT
