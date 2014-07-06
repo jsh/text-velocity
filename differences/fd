@@ -1,0 +1,9 @@
+#!/bin/bash -eu
+
+read old_x old_y
+while read x y; do
+  interval=$(( x - old_x ))
+  d=$(( (y-old_y)/interval ))
+  echo $old_x $d
+  old_x=$x; old_y=$y
+done

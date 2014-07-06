@@ -1,0 +1,7 @@
+#!/bin/bash -eu
+
+source test_setup
+
+cat powers-of-two |
+  fd  |
+  diff - <( head --lines=-1 powers-of-two )
